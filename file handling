@@ -1,0 +1,95 @@
+## Asiwome Agbleze
+# ## CMSC 111/1
+## Assignment 4 - Capstone Project - File Handling
+
+from datetime import datetime
+
+FILENAME = "jawg_contacts.txt"
+
+# 1. Greet user and explain what the program is about
+today = datetime.now()
+print("Welcome to JAWG Contacts!")
+print("This simple program helps you track people and organizations from JAWG.")
+print("Today's date:", today.strftime("%B %d, %Y"))
+print()
+
+# 2. Inquire what the user wants
+print("What would you like to do?")
+print("1. Add a new contact")
+print("2. View example contact")
+print("3. View contacts saved in file")
+
+action_choice = input("Enter 1, 2, or 3: ")
+
+# 3. Use if/elif/else to choose what happens
+if action_choice == "1":
+    # User wants to add a new contact
+    print("\nGreat! Let's add a new contact.\n")
+
+    contact_name = input("Contact's name: ")
+    organization = input("Organization: ")
+    role = input("Role (for example: mentor, provider, interviewee): ")
+    email = input("Email address: ")
+    connection_note = input("How are you connected to this person or organization? ")
+
+    # 4. Show a summary using the variables
+    print("\nYou added this contact to JAWG Contacts:")
+    print(f"Name: {contact_name}")
+    print(f"Organization: {organization}")
+    print(f"Role: {role}")
+    print(f"Email: {email}")
+    print(f"Connection: {connection_note}")
+
+    # 5. Save contact to a file using string formatting
+    line = f"{contact_name}|{organization}|{role}|{email}|{connection_note}\n"
+
+    try:
+        with open(FILENAME, "a", encoding="utf-8") as file:
+            file.write(line)
+        print("\nContact saved to file:", FILENAME)
+    except OSError as e:
+        print("\nSorry, there was a problem saving the contact to the file.")
+        print("Details:", e)
+
+elif action_choice == "2":
+    # User would choose to view an example instead of adding a contact
+    print("\nExample contact in JAWG Contacts:")
+    print("Name: Dr. Wairimu Mwangi")
+    print("Organization: JAWG Community Health Clinic")
+    print("Role: Mentor")
+    print("Email: mwangiwairimutri@gmail.com")
+    print("Connection: Supervises my internship project.")
+
+elif action_choice == "3":
+    # View contacts that were saved in the file
+    print("\nContacts saved in JAWG Contacts file:\n")
+    try:
+        with open(FILENAME, "r", encoding="utf-8") as file:
+            lines = file.readlines()
+
+        if not lines:
+            print("No contacts have been saved yet.")
+        else:
+            for line in lines:
+                parts = line.strip().split("|")
+                if len(parts) == 5:
+                    name, organization, role, email, connection = parts
+                    print(f"Name: {name}")
+                    print(f"Organization: {organization}")
+                    print(f"Role: {role}")
+                    print(f"Email: {email}")
+                    print(f"Connection: {connection}")
+                    print("-" * 40)
+                else:
+                    # Handle lines that do not match the expected format
+                    print("Skipped a line with unexpected format:", line.strip())
+    except FileNotFoundError:
+        print("No contact file found yet. Try adding a contact first.")
+    except OSError as e:
+        print("There was a problem reading the contacts file.")
+        print("Details:", e)
+
+else:
+    # User typed something other than 1, 2, or 3
+    print("\nThat was not a valid option.")
+    print("Please run JAWG Contacts again and choose 1, 2, or 3.")
