@@ -1,8 +1,8 @@
 ## Asiwome Agbleze
 ## CMSC 111/1
-## Assignment 2 -Capstone Project - Loops and functions
+## Assignment 3 -Capstone Project - Strings and Data Structures
 from datetime import datetime
-# # JAWG Contacts -Milestone 2
+# # JAWG Contacts -Milestone 3
 # Simple text-based contact tracker for internship partners
 
 # This functin displays the welcome message
@@ -13,17 +13,17 @@ print("This simple program helps you track people and organizations from JAWG.")
 print ("Today's date:"), today.strftime("%B %d, %Y")
 print()
 
-# 2. Inquire what the user wants (menu)
-def show_menu():
+# Create a list to store contacts
+contacts = []
+
+# Ask user what they want to do
 print("What would you like to do?")
 print("1. Add a new contact")
 print("2. View an example contact")
-print("3. Exist")
 
 action_choice = input("Enter 1 or 2: ")
 
-# This function creates and returns a contact dictionary
-def add_contact ():
+if action_choice == "1"
     print("\nGreat! Let's add a new contact.\n")
 
     contact_name = input("Contact's name: ")
@@ -33,7 +33,8 @@ def add_contact ():
     connection_not = input("How are you connected to this person or organization? ")
 
 
-return {
+# Store contact information in a dictionary
+contact = {
     "name": contact_name,
     "organization": organization,
     "role": role,
@@ -41,53 +42,36 @@ return {
     "connection": connection_note
     }
 
-# This function displays one contact
-def display_contact(contact):
-    print("\nContact information:")
-print(f"Name: {contact['name']}")
-print(f"Organization: {contact['organization']}")
-print(f"Role: {contact['role']}")
-print(f"Email: {contact['email']}")
-print(f"Connection: {contact['connection']}")
-print()
+# Add dictionary to the list
+contacts.append(contact)
 
-# This function shows the example contact
-def show_example_contact():
-    example_contact = {
+# Show the stored contact by looping through the dictionary
+print("\nYou added this contact to JAWG Contacts:")
+for key, value in contact.items():
+    print(f"{key}: {value}")
+
+elif action_choice == "2":
+# Store example contact in a dictionary
+example_contact {
 "Name: Dr. Wairimu Mwangi")
 "Organization: JAWG Community Health Clinic")
 "Role: Mentor")
 "Email: mwangiwairimutri@gmail.com")
 "Connection: Supervises my internship project.")
 }
+# Add example contact to the list
 display_contact(example_contact)
 
-# Main program
-show_welcome()
+# Display example contact using a loop
+print("\nExample contact in JAWG Contacts:")
+for key, value in example_contact.items ():
+    print(f"{key}: {value}")
 
-running = True
-contacts = []
+else:
+    print("\nThat was not a valid option.")
+    print("Please run JAWG Contacts again and choose 1 or 2.")
 
-while running:
-    show_menu90
-    action_action = input("Enter 1, 2, 3:")
 
-    if action_choice == "1":
-        new_contact = add_contact()
-        contacts.append(new_contact)
-        print("\nYou added this contact to JAWG Contacts:")
-        display_contact(new_contact)
-
-    elif action_choice == "2":
-        show_example_contact()
-
-    elif action_choice == "3":
-        print("\nGoodbye! Thanks for using JAWG Contacts.")
-        running = False
-
-    else:
-        print("\nThat was not a valid option.")
-        print("Please choose 1, 2, or 3.\n")
 
 
 
