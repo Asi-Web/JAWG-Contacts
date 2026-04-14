@@ -1,0 +1,92 @@
+##Asiwome Agbleze
+# ## CMSC 111/1
+## Assignment 5 - Capstone Project - Object-Oriented Programming
+
+from datetime import datetime
+
+class Contact:
+    """Represents a single JAWG contact."""
+    def __init__(self, name, organization, role, email, connection):
+        self.name = name
+        self.organization = organization
+        self.role = role
+        self.email = email
+        self.connection = connection
+
+    def to_dict(self):
+        """Return the contact information as a dictionary."""
+        return {
+            "Name": self.name,
+            "Organization": self.organization,
+            "Role": self.role,
+            "Email": self.email,
+            "Connection": self.connection
+        }
+
+    def display(self):
+        """Print the contact information using string formatting."""
+        info = self.to_dict()
+        print()
+        for key, value in info.items():
+            print(f"{key}: {value}")
+
+
+# Greet user and explain the program
+today = datetime.now()
+print("Welcome to JAWG Contacts!")
+print("This simple program helps you track people and organizations from JAWG.")
+print("Today's date:", today.strftime("%B %d, %Y"))
+print()
+
+# List to store Contact objects
+contacts = []
+
+# Ask user what they want to do
+print("What would you like to do?")
+print("1. Add a new contact")
+print("2. View an example contact")
+
+action_choice = input("Enter 1 or 2: ")
+
+if action_choice == "1":
+    print("\nGreat! Let's add a new contact.\n")
+
+    contact_name = input("Contact's name: ")
+    organization = input("Organization: ")
+    role = input("Role (for example: mentor, provider, interviewee): ")
+    email = input("Email address: ")
+    connection_note = input("How are you connected to this person or organization? ")
+
+    # Create a Contact object (OOP)
+    new_contact = Contact(
+        contact_name,
+        organization,
+        role,
+        email,
+        connection_note
+    )
+
+    # Store the object in the list
+    contacts.append(new_contact)
+
+    print("\nYou added this contact to JAWG Contacts:")
+    new_contact.display()
+
+elif action_choice == "2":
+    # Create an example Contact object
+    example_contact = Contact(
+        "Dr. Wairimu Mwangi",
+        "JAWG Community Health Clinic",
+        "Mentor",
+        "mwangiwairimutri@gmail.com",
+        "Supervises my internship project."
+    )
+
+    contacts.append(example_contact)
+
+    print("\nExample contact in JAWG Contacts:")
+    example_contact.display()
+
+else:
+    print("\nThat was not a valid option.")
+    print("Please run JAWG Contacts again and choose 1 or 2.")
