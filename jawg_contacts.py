@@ -1,10 +1,16 @@
-# JAWG Contacts -Milestone 1
+## Asiwome Agbleze
+## CMSC 111/1
+## Assignment 6 -Capstone Project -Error Handling
+from datetime import datetime
+# # JAWG Contacts -Milestone 6
 # Simple text-based contact tracker for internship partners
 
 # 1. Greet user and explain what the program is about
+today = datetime.now()
 print("Welcome to JAWG Contacts!")
-print("This simple program helps you track people and organizations from JAWG.\n")
-
+print("This simple program helps you track people and organizations from JAWG.")
+print ("Today's date:"), today.strftime("%B %d, %Y"))
+print()
 
 # 2. Inquire what the user wants 
 print("What would you like to do?")
@@ -45,4 +51,18 @@ else:
     # User typed something other than 1 or 2
     print("\nThat was not a valid option.")
     print("Please run JAWG Contacts again and choose 1 or 2.")
+if contact_name == "" or organization == "" or role == "" or email == "":
+    print("\nError: name, organization, role and email cannot be blank.")
+else:
+    print("\nYou added this contact to JAWG Caontacts:")
+    print(f"Name: {contact_name}")
+    print(f"organization: {organization}")
+    print(f"Role: {role}")
+    print(f"Email: {email}")
+    print(f"Connection: {connection_note}")
+except ValueError:
+print("\nInvalid input. Please try again.")
+
+except Exception as e:
+    print("\nSomething went wrong:", e)
 
