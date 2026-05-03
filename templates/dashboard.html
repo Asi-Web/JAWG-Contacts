@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Your Contacts</h1>
+
+  <form method="GET" action="{{ url_for('dashboard') }}">
+    <input type="text" name="search" placeholder="Search by name, organization, or role"
+           value="{{ search }}">
+    <button type="submit">Search</button>
+  </form>
+
+  <p><a href="{{ url_for('add_contact') }}">Add a new contact</a></p>
+
+  {% if contacts %}
+    <table border="1" cellpadding="5" cellspacing="0">
+      <tr>
+        <th>Name</th>
+        <th>Organization</th>
+        <th>Role</th>
+        <th>Email</th>
+        <th>Connection</th>
+        <th>Actions</th>
+      </tr>
+      {% for contact in contacts %}
+        <tr>
+          <td>{{ contact['name'] }}</td>
+          <td>{{ contact['organization'] }}</td>
+          <td>{{ contact['role'] }}</td>
+          <td>{{ contact['email'] }}</td>
+          <td>{{ contact['connection'] }}</td>
+          <td>
+            <a href="{{ url_for('edit_contact', id=contact['id']) }}">Edit</a>
+            <form action="{{ url_for('delete_contact', id=contact['id']) }}" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No contacts found yet. Try adding one.</p>
+  {% endif %}
+{% endblock %}
